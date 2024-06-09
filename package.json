@@ -1,0 +1,27 @@
+{
+  "name": "socialmedia",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnrazablog/socialmedia.git"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "javascript"
+  ],
+  "author": "MN Raza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnrazablog/socialmedia/issues"
+  },
+  "homepage": "https://github.com/mnrazablog/socialmedia#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
