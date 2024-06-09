@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const User = require("./models/user");
-const jwt = require(jsonwebtoken);
+const jwt = require("jsonwebtoken");
 
 var cookieParser = require('cookie-parser')
 
@@ -10,14 +10,13 @@ app.use(express.json()); //later discuss
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
+// custom middleware
+const auth = require("./middleware/auth")
+
 // app.get("/api/v1/:token",(req,res)=>{
 //     console.log(req.params.token);
 //     res.status(200).json({param:req.params.token})
 // })
-
-app.get("/", (req, res) => {
-  res.send("<h1>Hello auth system</h1>");
-});
 
 app.post("/register", async (req, res) => {
   console.log(req.body);
@@ -106,12 +105,26 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/dashboard", (req, res)=>{
- 
-
+app.get("/dashboard", (req, auth, res)=>{
+  res.send("welcome to Dashboard")
 })
 
+function calculateSum(counter){
+  var sum =0;
+  for (let i = 0; i <=counter; i++) {
+    sum = sum + i;
+  }
+  return sum;
+}
 
+function handleFirstRequest(req, res) {
+  var counter = parseInt(req.query.counter, 10); 
+  var sum = calculateSum(counter); 
+  var answer = "This is sum " + sum;
+  res.send(answer);
+}
+
+app.get("/handleSum", handleFirstRequest);
 
 
 
