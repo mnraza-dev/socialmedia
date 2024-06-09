@@ -126,26 +126,4 @@ function handleFirstRequest(req, res) {
 
 app.get("/handleSum", handleFirstRequest);
 
-
-
-
-
-
-
-
-
-app.post("/signup", async (req, res) => {
-  // for all mandatory field
-  const { firstname, lastname, email, password } = req.body;
-  if (!(email && firstname && lastname)) {
-    res.status(400).send("All the fields are required !");
-  }
-  // Unique email
-  const extUser = await User.findOne(email);
-  if (extUser) {
-    res.status(200).send("User already exists !");
-  }
-
-  // Password
-});
 module.exports = app;
