@@ -1,5 +1,11 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+
 
 // created a custom middleware
 const middleware1 = (req, res, next)=>{
@@ -132,7 +138,12 @@ const handleFirstRequest = (req, res)=>{
   // const calculatedSum = calculateSum(req.query.counter);
 
   // using request headers
-  const calculatedSum = calculateSum(req.headers.counter);
+  // const calculatedSum = calculateSum(req.headers.counter);
+
+  // using request body 
+  const calculatedSum = calculateSum(req.body.counter);
+  // console.log(req.body.name);
+  // console.log(req.body.age);
   console.log(calculatedSum);
   const answer = "The Sum is "+ calculatedSum;
   res.send(answer);
