@@ -116,14 +116,21 @@ const calculateSum = (counter)=>{
 }
 
 const handleFirstRequest = (req, res)=>{
-  const calculatedSum = calculateSum(req.query.counter);
+  // using request query params
+  // const calculatedSum = calculateSum(req.query.counter);
+
+  // using request headers
+  const calculatedSum = calculateSum(req.headers.counter);
+
+  
   console.log(calculatedSum);
   const answer = "The Sum is "+ calculatedSum;
   res.send(answer);
 } 
 
-app.get("/", handleFirstRequest)
+// app.get("/", handleFirstRequest)
 
+app.post("/handleRequest", handleFirstRequest)
 
 
 
