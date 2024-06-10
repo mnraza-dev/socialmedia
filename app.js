@@ -1,5 +1,15 @@
 const express = require("express");
 const app = express();
+
+// created a custom middleware
+const middleware1 = (req, res, next)=>{
+  console.log("From inside middleware ",req.headers.counter);
+  next();
+}
+
+// register the middleware
+app.use(middleware1);
+
 // const User = require("./models/user");
 // const jwt = require("jsonwebtoken");
 
@@ -107,6 +117,8 @@ const app = express();
 // app.get("/dashboard", (req, auth, res)=>{
 //   res.send("welcome to Dashboard")
 // })
+
+
 const calculateSum = (counter)=>{
   let sum = 0;
   for (let i = 0; i <= counter; i++) {
@@ -121,8 +133,6 @@ const handleFirstRequest = (req, res)=>{
 
   // using request headers
   const calculatedSum = calculateSum(req.headers.counter);
-
-  
   console.log(calculatedSum);
   const answer = "The Sum is "+ calculatedSum;
   res.send(answer);
@@ -131,8 +141,6 @@ const handleFirstRequest = (req, res)=>{
 // app.get("/", handleFirstRequest)
 
 app.post("/handleRequest", handleFirstRequest)
-
-
 
 
 module.exports = app;
