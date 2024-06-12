@@ -2,17 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-
 // created a custom middleware
 const middleware1 = (req, res, next)=>{
-  console.log("From inside middleware ",req.headers.counter);
+  console.log("From inside middleware ",req.body.counter);
   next();
 }
-
 // register the middleware
 app.use(middleware1);
 
